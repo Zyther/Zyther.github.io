@@ -13,7 +13,11 @@
 
     <!-- Custom styles for this template -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-    
+    <style>
+      .fullWidth {
+        width: 100%;
+      }
+    </style>
 </head>
 <body>
 
@@ -25,14 +29,11 @@
               <a class="nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Contact</a>
+              <a class="nav-link" href="#" id="aboutBtn">About</a>
             </li>
           </ul>
         </nav>
-        <h3 class="text-muted">Project name</h3>
+        <h3 class="text-muted">The Dictionary of Alec</h3>
       </header>
 
       <main role="main">
@@ -40,35 +41,123 @@
         <div class="jumbotron">
           <h1 class="display-3">The Dictionary of Alec</h1>
           <p class="lead">Yeah, this site really exists.</p>
-          <p><a class="btn btn-lg btn-success" href="#" role="button">"Alec" a word now</a></p>
+          <p><a class="btn btn-lg btn-success" href="#" role="button" id="alecAnyWord">"Alec" a word now</a></p>
         </div>
 
         <div class="row marketing">
-          <div class="col-lg-6">
-            <h4>Alec a word!</h4>
-            <div class="col-lg-offset-3 col-lg-6">
-              <div class="input-group">
+          <div class="col-md-6">
+            <h4>"Alec" a word!</h4>
+              <div class="input-group fullWidth" id="theInputWrapper">
+                <input type="text" class="form-control" placeholder="Enter a word..." id="theInput">
                 <span class="input-group-btn">
-                  <button class="btn btn-secondary" type="button">Past Tense</button>
+                  <button class="btn btn-secondary" type="button" id="currentBtn">Current Tense</button>
                 </span>
-                <input type="text" class="form-control" placeholder="Product name">
                 <span class="input-group-btn">
-                  <button class="btn btn-secondary" type="button">Current Tense</button>
-                </span>
+                  <button class="btn btn-secondary" type="button" id="pastBtn">Past Tense</button>
               </div>
-            </div>
+          </div>
+          <div class="col-md-6">
+            <h4>The Dictionary!</h4>
+            <a class="btn btn-primary fullWidth" href="#" id="dictBtn">Click here to View</a>
+          </div>
         </div>
 
       </main>
 
       <footer class="footer">
-        <p>&copy; Company 2017</p>
+        <p>&copy; Alec G - 2017</p>
       </footer>
 
     </div> <!-- /container -->
 </body>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+<script>
+  $(document).ready(function(){
+    $("#aboutBtn").click(function(e){
+      $("#aboutModal").modal('show');
+    });
+    $("#dictBtn").click(function(){
+      $("#dictModal").modal("show");
+    });
+    $("#alecAnyWord").click(function(){
+      $("#theInputWrapper").fadeOut().fadeIn().fadeOut().fadeIn();
+    });
+    $("#currentBtn").click(function(){
+      if ($("#theInput").val() === "") {
+        alert("enter a word before pressing that!");
+        $("#theInput").fadeOut().fadeIn();
+      } else {
+        $(".theWord").text($("#theInput").val() + "'ing");
+        $("#tenseModal").modal("show");
+      }
+    })
+    $("#pastBtn").click(function(){
+      if ($("#theInput").val() === "") {
+        alert("enter a word before pressing that!");
+        $("#theInput").fadeOut().fadeIn();
+      } else {
+        $(".theWord").text($("#theInput").val() + "'d");
+        $("#tenseModal").modal("show");
+      }
+    })
+    
+  });
+</script>
+<div class="modal fade" id="aboutModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">About</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>lmao, this site provides no actual benefit, other than being for the lol's.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="dictModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">The REAL dictionary</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Yeah, no. There is no real dictionary. :b </p>
+      </div>
+      <div class="modal-footer">      
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="tenseModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Your word is: <span class="theWord"</span></p><br />
+        <p>Used in a sentence: <em>Wow, she was really <span class="theWord"></span>!</em></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 </html>
